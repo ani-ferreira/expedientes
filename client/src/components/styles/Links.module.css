@@ -1,0 +1,17 @@
+.links {
+  text-decoration: none;
+  color: rgb(247, 247, 247);
+}
+.card {
+  background-color: rgb(59, 59, 59);
+  text-align: center;
+  padding: 2rem;
+}
+.card:hover {
+  background-color: rgb(75, 83, 196);
+  color: rgb(235, 235, 235);
+}
+
+.container {
+  margin: 4rem;
+}
