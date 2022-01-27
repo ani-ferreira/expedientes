@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-import styles from "../../components/styles/Home.module.css";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import styles from '../components/styles/Home.module.css';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import {
   BsFillCloudArrowUpFill,
   BsFillArchiveFill,
   BsCardList,
-} from "react-icons/bs";
-import Links from "../Links";
+} from 'react-icons/bs';
+import Links from '../components/Links';
 
 const Home = () => {
   return (

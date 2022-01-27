@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import FoldersList from "../Folders/FoldersList";
-import axios from "axios";
-import LoadingSpinner from "../Layout/LoadingSpinner";
+import { useEffect, useState } from 'react';
+import FoldersList from '../components/Folders/FoldersList';
+import axios from 'axios';
+import LoadingSpinner from '../components/Layout/LoadingSpinner';
 
 const Folders = () => {
   const [steps, setSteps] = useState([]);
@@ -12,7 +12,7 @@ const Folders = () => {
   }, []);
 
   const setPosts = () => {
-    axios.get("/posts").then((result) => {
+    axios.get('/posts').then((result) => {
       setSteps(result.data.posts);
       setLoading(false);
     });

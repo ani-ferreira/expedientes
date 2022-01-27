@@ -1,7 +1,7 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import LoadingSpinner from "../Layout/LoadingSpinner";
-import Swal from "sweetalert2";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import LoadingSpinner from '../components/Layout/LoadingSpinner';
+import Swal from 'sweetalert2';
 
 const AllPosts = () => {
   const [posts, getPosts] = useState(null);
@@ -11,27 +11,27 @@ const AllPosts = () => {
   }, []);
 
   const setPosts = () => {
-    axios.get("/posts").then((result) => {
+    axios.get('/posts').then((result) => {
       getPosts(result.data.posts);
       console.log(result.data.posts);
     });
-    console.log("all posts" + posts);
+    console.log('all posts' + posts);
   };
 
   //call the setpost function to render the list again after deleting
   const onDelete = (id) => {
     Swal.fire({
-      title: "Estás seguro/a?",
-      text: "No vas a podes deshacer esta acción.",
-      icon: "warning",
+      title: 'Estás seguro/a?',
+      text: 'No vas a podes deshacer esta acción.',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#008000",
-      cancelButtonText: "Cancelar",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Eliminar",
+      confirmButtonColor: '#008000',
+      cancelButtonText: 'Cancelar',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Eliminado!", "El movimiento ha sido eliminado", "success");
+        Swal.fire('Eliminado!', 'El movimiento ha sido eliminado', 'success');
 
         axios.delete(`/posts/delete/${id}`).then(() => {
           setPosts();
@@ -57,7 +57,7 @@ const AllPosts = () => {
             <th scope="col">Tipo</th>
             <th scope="col">Acciones</th>
           </tr>
-        </thead>{" "}
+        </thead>{' '}
         {posts ? (
           <tbody>
             {posts

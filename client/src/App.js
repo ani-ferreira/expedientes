@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CreatePost from "./components/pages/CreatePost";
-import EditPost from "./components/pages/EditPost";
-import Header from "./components/Layout/Header";
-import AllPosts from "./components/pages/AllPosts";
-import Home from "./components/pages/Home";
-import Folders from "./components/pages/Folders";
-import StepsList from "./components/Folders/StepsList";
-import NotFound from "./components/pages/NotFound";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import CreatePost from './pages/CreatePost';
+import EditPost from './pages/EditPost';
+import Header from './components/Layout/Header';
+import AllPosts from './pages/AllPosts';
+import Home from './pages/Home';
+import Folders from './pages/Folders';
+import StepsList from './components/Folders/StepsList';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
