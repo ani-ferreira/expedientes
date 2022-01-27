@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../Layout/LoadingSpinner";
+import Swal from "sweetalert2";
 
 const StepsList = () => {
   const params = useParams();
@@ -20,10 +21,31 @@ const StepsList = () => {
     });
   };
 
-  const onDelete = (id) => {
+  /* const onDelete = (id) => {
     axios.delete(`/posts/delete/${id}`).then(() => {
       alert("Ha sido eliminado");
       setSteps();
+    });
+  }; */
+  const onDelete = (id) => {
+    Swal.fire({
+      title: "Estás seguro/a?",
+      text: "No vas a podes deshacer esta acción.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#008000",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Eliminado!", "El movimiento ha sido eliminado", "success");
+
+        axios.delete(`/posts/delete/${id}`).then(() => {
+          const newSteps = steps.filter((step) => step.id !== id);
+          setSteps(newSteps);
+        });
+      }
     });
   };
 
@@ -31,7 +53,7 @@ const StepsList = () => {
     <div className="container">
       <div class=" d-flex justify-content-between margin">
         <div>
-          <h2>Carátula de expediente:</h2>
+          <h2>Carátula:</h2>
           <h5>"{params.folderlist}"</h5>
         </div>
 
