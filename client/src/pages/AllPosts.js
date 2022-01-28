@@ -1,24 +1,19 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
 import LoadingSpinner from '../components/Layout/LoadingSpinner';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPosts } from '../store/postActions';
 
 const AllPosts = () => {
-  const [posts, getPosts] = useState(null);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts.posts);
 
   useEffect(() => {
-    setPosts();
-  }, []);
+    dispatch(getPosts());
+  }, [dispatch]);
 
-  const setPosts = () => {
-    axios.get('/posts').then((result) => {
-      getPosts(result.data.posts);
-      console.log(result.data.posts);
-    });
-    console.log('all posts' + posts);
-  };
-
-  //call the setpost function to render the list again after deleting
+  //dispatch getPosts action to render the list again after deleting
   const onDelete = (id) => {
     Swal.fire({
       title: 'Estás seguro/a?',
@@ -34,7 +29,7 @@ const AllPosts = () => {
         Swal.fire('Eliminado!', 'El movimiento ha sido eliminado', 'success');
 
         axios.delete(`/posts/delete/${id}`).then(() => {
-          setPosts();
+          dispatch(getPosts());
         });
       }
     });

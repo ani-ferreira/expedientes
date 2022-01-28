@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import Axios from "axios";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../store/postActions';
 
 const CreatePost = () => {
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
-    fecha: "",
-    expediente: "",
-    movimiento: "",
-    tipo: "",
+    fecha: '',
+    expediente: '',
+    movimiento: '',
+    tipo: '',
   });
 
   const [validName, setValidName] = useState(false);
@@ -21,10 +24,17 @@ const CreatePost = () => {
     const newData = { ...data };
     newData[e.target.name] = e.target.value;
     setData(newData);
-    if (e.target.value !== "") {
+    if (e.target.value !== '') {
       setValidName(true);
     }
   }
+
+  const newDataObj = {
+    fecha: data.fecha,
+    expediente: data.expediente,
+    movimiento: data.movimiento,
+    tipo: data.tipo,
+  };
 
   function onSubmit(e) {
     e.preventDefault();
@@ -36,27 +46,23 @@ const CreatePost = () => {
     }
 
     setValidName(true);
-    Axios.post("/posts/add", {
-      fecha: data.fecha,
-      expediente: data.expediente,
-      movimiento: data.movimiento,
-      tipo: data.tipo,
-    })
-      .then((res) => {
-        if (res.data.success) {
-          Swal.fire({
-            title: "Guardado!",
-            text: "Se agregó el movimiento correctamente.",
-            icon: "success",
-            confirmButtonText: "Salir",
-            timer: 1600,
-          });
 
-          console.log(res.data);
-        }
+    async function creatingPost() {
+      return dispatch(createPost(newDataObj));
+    }
+
+    creatingPost()
+      .then(() => {
+        Swal.fire({
+          title: 'Guardado!',
+          text: 'Se agregó el movimiento correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Salir',
+          timer: 1600,
+        });
       })
       .then(() => {
-        history.replace("/");
+        history.replace('/');
       });
   }
 
