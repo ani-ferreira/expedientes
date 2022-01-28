@@ -1,13 +1,12 @@
-import axios from 'axios';
 import LoadingSpinner from '../components/Layout/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getPosts } from '../store/postActions';
+import { getPosts, deletePost } from '../store/postActions';
 
 const AllPosts = () => {
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts.posts.posts);
+  const posts = useSelector((state) => state.postsReducer.posts.posts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -28,9 +27,8 @@ const AllPosts = () => {
       if (result.isConfirmed) {
         Swal.fire('Eliminado!', 'El movimiento ha sido eliminado', 'success');
 
-        axios.delete(`/posts/delete/${id}`).then(() => {
-          dispatch(getPosts());
-        });
+        dispatch(deletePost(id));
+        dispatch(getPosts());
       }
     });
   };

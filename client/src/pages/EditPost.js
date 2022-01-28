@@ -1,16 +1,20 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import Swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { editPostById } from '../store/postActions';
 
 export default function EditPost() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
+
   const [data, setData] = useState({
-    fecha: "",
-    expediente: "",
-    movimiento: "",
-    tipo: "",
+    fecha: '',
+    expediente: '',
+    movimiento: '',
+    tipo: '',
   });
 
   const [validName, setValidName] = useState(false);
@@ -20,14 +24,12 @@ export default function EditPost() {
   const handleInputChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
 
-    if (e.target.value !== "") {
+    if (e.target.value !== '') {
       setValidName(true);
     }
   };
 
-  const history = useHistory();
-  //edit posts
-  const onSubmit = async (e) => {
+  function onSubmit(e) {
     e.preventDefault();
     setNameFocus(true);
     var letters = /^[a-zA-Z\s]*$/;
@@ -37,21 +39,25 @@ export default function EditPost() {
     }
 
     setValidName(true);
-    await axios
-      .put(`/posts/update/${id}`, data)
-      .then(
-        Swal.fire({
-          title: "Guardado!",
-          text: "Se editó el movimiento correctamente.",
-          icon: "success",
-          confirmButtonText: "Salir",
-          timer: 1600,
-        })
-      )
+
+    async function editingPost() {
+      dispatch(editPostById({ id: id, data: data }));
+    }
+
+    editingPost()
       .then(() => {
-        history.replace("/");
+        Swal.fire({
+          title: 'Guardado!',
+          text: 'Se editó el movimiento correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Salir',
+          timer: 1600,
+        });
+      })
+      .then(() => {
+        history.replace('/posts');
       });
-  };
+  }
 
   return (
     <div className="col-md-10 mt-3 mx-auto">
@@ -121,18 +127,6 @@ export default function EditPost() {
             <option value={data.tipo.extrajudicial}>extrajudicial</option>
           </select>
         </div>
-        {/*  <div className="form-group">
-          <label>Remuneración:</label>
-          <input
-            type="text"
-            className="form-control"
-            name"
-            placeholder="Ingresar remuneracion"
-            value={remuneracion}
-            onChange={(e) => handleInputChange(e)}
-            required
-          />
-        </div> */}
         <br />
         <button className="btn btn-success" type="submit" onClick={onSubmit}>
           &nbsp; &nbsp;Guardar cambios

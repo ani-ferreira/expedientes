@@ -1,44 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import FoldersList from '../components/Folders/FoldersList';
-import axios from 'axios';
 import LoadingSpinner from '../components/Layout/LoadingSpinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { getPosts } from '../store/postActions';
 
 const Folders = () => {
-  const [steps, setSteps] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const steps = useSelector((state) => state.posts.posts.posts);
 
   useEffect(() => {
-    setPosts();
-  }, []);
-
-  const setPosts = () => {
-    axios.get('/posts').then((result) => {
-      setSteps(result.data.posts);
-      setLoading(false);
-    });
-  };
+    dispatch(getPosts());
+  }, [dispatch]);
 
   console.log(steps);
 
-  const uniqueFolders = [...new Set(steps.map((fol) => fol.expediente))];
+  let uniqueFol = [];
 
-  console.log(uniqueFolders);
+  if (steps) {
+    uniqueFol = [...new Set(steps.map((fol) => fol.expediente))];
+  }
 
   return (
     <>
-      {loading && <LoadingSpinner />}
-      {!loading && (
+      {steps ? (
         <div className="container">
           <div className="container">
             <h2 className="title">Carpetas</h2>
           </div>
-          <FoldersList folder={uniqueFolders} steps={steps} />
+          <FoldersList folder={uniqueFol} steps={steps} />
         </div>
+      ) : (
+        <LoadingSpinner />
       )}
     </>
   );
 };
 
 export default Folders;
-
-//inside folerlist components goes the stepList component
