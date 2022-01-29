@@ -1,3 +1,5 @@
+import LoadingSpinner from './Layout/LoadingSpinner';
+
 const PostsTable = (props) => {
   const posts = props.posts;
   let searchedWord = props.searchTerm;
@@ -57,7 +59,7 @@ const PostsTable = (props) => {
             .reverse()}
         </tbody>
       ) : (
-        <p>loading spinner</p>
+        <LoadingSpinner />
       )}
     </table>
   );
