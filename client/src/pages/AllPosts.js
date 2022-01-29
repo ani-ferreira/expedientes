@@ -1,10 +1,11 @@
 import LoadingSpinner from '../components/Layout/LoadingSpinner';
 import Swal from 'sweetalert2';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts, deletePost } from '../store/postActions';
 
 const AllPosts = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.postsReducer.posts.posts);
 
@@ -34,10 +35,25 @@ const AllPosts = () => {
   };
 
   return (
-    <div className="margin">
-      <br />
-      <div className="col-lg-9 mt-2 mb-2">
-        <h2>Todos los movimientos</h2>
+    <div className="container">
+      <div className="margin">
+        <br />
+        <div className="row">
+          <div className="col-lg-9 mt-2 mb-2">
+            <h2>Todos los movimientos</h2>
+          </div>
+          <div className="col-lg-3 mt-2 mb-2">
+            <input
+              className="form-control"
+              type="search"
+              placeholder="Filtrar por nombre de expediente"
+              name="searchTerm"
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            ></input>
+          </div>
+        </div>
       </div>
       <br />
       <table className="table">
@@ -54,6 +70,17 @@ const AllPosts = () => {
         {posts ? (
           <tbody>
             {posts
+              .filter((val) => {
+                if (searchTerm === '') {
+                  return val;
+                } else if (
+                  val.expediente
+                    .toLowerCase()
+                    .includes(searchTerm.toLocaleLowerCase())
+                ) {
+                  return val;
+                }
+              })
               .map((post, index) => (
                 <tr key={index}>
                   <th scope="row">{index}</th>
