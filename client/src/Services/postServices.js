@@ -43,7 +43,7 @@ export const deletePostById = async (id) => {
 //
 export const getById = async (id) => {
   try {
-    const req = await axios.get(`/posts/${id}`);
+    const req = await axios.get(`/posts/info/${id}`);
     return req.data;
   } catch (error) {
     throw new Error(error?.message);

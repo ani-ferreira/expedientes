@@ -41,4 +41,12 @@ router.delete('/delete/:id', (req, res) => {
   });
 });
 
+//get post by id
+router.get('/info/:id', async (req, res) => {
+  const info = await Post.findById(req.params.id);
+  await info;
+
+  res.json(info);
+});
+
 module.exports = router;

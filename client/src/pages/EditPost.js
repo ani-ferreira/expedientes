@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { editPostById } from '../store/postActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { editPostById, getPostById } from '../store/postActions';
 
 export default function EditPost() {
+  const post = useSelector((state) => state.postsReducer.post);
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getPostById(id));
+  }, [dispatch, id]);
+
+  console.log(post);
 
   const [data, setData] = useState({
     fecha: '',
@@ -71,7 +78,7 @@ export default function EditPost() {
             type="text"
             className="form-control"
             name="fecha"
-            placeholder="Ingresar fecha"
+            placeholder={post.fecha}
             value={fecha}
             onChange={(e) => handleInputChange(e)}
             required
@@ -85,7 +92,7 @@ export default function EditPost() {
             type="text"
             className="form-control"
             name="expediente"
-            placeholder='Ingresar nombre de la carátula, sin caracteres ( / - " " )'
+            placeholder={post.expediente}
             value={expediente}
             onChange={(e) => handleInputChange(e)}
             required
@@ -106,7 +113,7 @@ export default function EditPost() {
             type="text"
             className="form-control"
             name="movimiento"
-            placeholder="Ingresar movimiento"
+            placeholder={post.movimiento}
             value={movimiento}
             onChange={(e) => handleInputChange(e)}
             required

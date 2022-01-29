@@ -6,7 +6,7 @@ import { getPosts } from '../store/postActions';
 
 const Folders = () => {
   const dispatch = useDispatch();
-  const steps = useSelector((state) => state.posts.posts.posts);
+  const steps = useSelector((state) => state.postsReducer.posts.posts);
 
   useEffect(() => {
     dispatch(getPosts());

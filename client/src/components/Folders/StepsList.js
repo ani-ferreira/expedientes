@@ -8,12 +8,12 @@ import { getPosts, deletePost } from '../../store/postActions';
 const StepsList = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const steps = useSelector((state) => state.posts.posts.posts);
+  const steps = useSelector((state) => state.postsReducer.posts.posts);
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
-
+  console.log(params);
   const onDelete = (id) => {
     Swal.fire({
       title: 'Estás seguro/a?',

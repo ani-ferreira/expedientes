@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import styles from "../styles/FoldersList.module.css";
+import { Link } from 'react-router-dom';
+import styles from '../styles/FoldersList.module.css';
 
 const FoldersList = (props) => {
-  //abc order for the array of folders
+  //abc order for the folder`s array
   const sortedArray = props.folder.sort();
 
   return (
@@ -20,7 +20,7 @@ const FoldersList = (props) => {
             </li>
           ))}
         </ul>
-      </div>{" "}
+      </div>{' '}
     </>
   );
 };
