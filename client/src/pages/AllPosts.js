@@ -1,8 +1,8 @@
-import LoadingSpinner from '../components/Layout/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts, deletePost } from '../store/postActions';
+import PostsTable from '../components/PostsTable';
 
 const AllPosts = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,7 +37,6 @@ const AllPosts = () => {
   return (
     <div className="container">
       <div className="margin">
-        <br />
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
             <h2>Todos los movimientos</h2>
@@ -56,61 +55,7 @@ const AllPosts = () => {
         </div>
       </div>
       <br />
-      <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Expediente</th>
-            <th scope="col">Movimiento</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>{' '}
-        {posts ? (
-          <tbody>
-            {posts
-              .filter((val) => {
-                if (searchTerm === '') {
-                  return val;
-                } else if (
-                  val.expediente
-                    .toLowerCase()
-                    .includes(searchTerm.toLocaleLowerCase())
-                ) {
-                  return val;
-                }
-              })
-              .map((post, index) => (
-                <tr key={index}>
-                  <th scope="row">{index}</th>
-                  <td>{post.fecha}</td>
-                  <td>{post.expediente}</td>
-                  <td>{post.movimiento}</td>
-                  <td>{post.tipo}</td>
-                  <td>
-                    <a
-                      className="btn btn-outline-warning"
-                      href={`/edit/${post._id}`}
-                    >
-                      Editar
-                    </a>
-                    &nbsp;
-                    <button
-                      className="btn btn-outline-danger"
-                      onClick={() => onDelete(post._id)}
-                    >
-                      Eliminar
-                    </button>
-                  </td>
-                </tr>
-              ))
-              .reverse()}
-          </tbody>
-        ) : (
-          <LoadingSpinner />
-        )}
-      </table>
+      <PostsTable posts={posts} searchTerm={searchTerm} onDelete={onDelete} />
     </div>
   );
 };
