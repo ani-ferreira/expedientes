@@ -1,4 +1,5 @@
 import LoadingSpinner from './Layout/LoadingSpinner';
+import { Link } from 'react-router-dom';
 
 const PostsTable = (props) => {
   const posts = props.posts;
@@ -38,12 +39,12 @@ const PostsTable = (props) => {
                 <td>{post.movimiento}</td>
                 <td>{post.tipo}</td>
                 <td>
-                  <a
+                  <Link
+                    to={`/edit/${post._id}`}
                     className="btn btn-outline-warning"
-                    href={`/edit/${post._id}`}
                   >
                     Editar
-                  </a>
+                  </Link>
                   &nbsp;
                   <button
                     className="btn btn-outline-danger"

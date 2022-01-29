@@ -4,6 +4,7 @@ import LoadingSpinner from '../Layout/LoadingSpinner';
 import Swal from 'sweetalert2';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts, deletePost } from '../../store/postActions';
+import { Link } from 'react-router-dom';
 
 const StepsList = () => {
   const params = useParams();
@@ -70,12 +71,12 @@ const StepsList = () => {
                   <td>{post.movimiento}</td>
                   <td>{post.tipo}</td>
                   <td>
-                    <a
+                    <Link
                       className="btn btn-outline-warning"
-                      href={`/edit/${post._id}`}
+                      to={`/edit/${post._id}`}
                     >
                       Editar
-                    </a>
+                    </Link>
                     &nbsp;
                     <button
                       className="btn btn-outline-danger"
