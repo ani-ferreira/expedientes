@@ -1,23 +1,23 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv/config");
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+require('dotenv/config');
 
-//connect to DB
+//Connect to DB
 mongoose.connect(process.env.DB_CONNECTION);
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(cors());
 
-app.use("/posts", require("./routes/post"));
+//Import route & use middleware
+//Posts
+app.use('/posts', require('./routes/post'));
 
-app.get("/", (req, res) => {
-  res.send({ Project: "MERN CRUD" });
-});
+//Auth
+app.use('/user', require('./routes/auth'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Post } = require('../models/Post');
+/* const verify = require('../middlewares/verifytoken')
+ */
 
 //submit post
 router.post('/add', (req, res) => {
@@ -9,6 +11,7 @@ router.post('/add', (req, res) => {
     return res.status(200).json({ success: true });
   });
 });
+
 //get all posts
 router.get('/', (req, res) => {
   Post.find().exec((err, posts) => {

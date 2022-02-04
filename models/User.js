@@ -27,5 +27,5 @@ const UserSchema = new Schema({
 });
 
 module.exports = {
-  Post: mongoose.model('user', UserSchema),
+  User: mongoose.model('user', UserSchema),
 };
