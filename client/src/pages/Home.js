@@ -7,6 +7,7 @@ import {
   BsCardList,
 } from 'react-icons/bs';
 import Links from '../components/Links';
+import Login from '../components/Login';
 
 const Home = () => {
   return (
@@ -59,6 +60,7 @@ const Home = () => {
         </Row>
       </Container>
       <Links />
+      <Login />
     </>
   );
 };
