@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Folders from './pages/Folders';
 import StepsList from './components/Folders/StepsList';
 import NotFound from './pages/NotFound';
+import Login from './components/Login';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <h1 className="home-title">Gestión de expedientes</h1>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/login" component={Login} />
         <Route path="/posts" component={AllPosts} />
         <Route path="/add" component={CreatePost} />
         <Route path="/edit/:id" component={EditPost} />
