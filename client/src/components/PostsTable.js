@@ -5,6 +5,12 @@ const PostsTable = (props) => {
   const posts = props.posts;
   let searchedWord = props.searchTerm;
 
+  const filteredPosts = posts?.filter((val) => {
+    return val.expediente
+      .toLowerCase()
+      .includes(searchedWord.toLocaleLowerCase());
+  });
+
   return (
     <table className="table">
       <thead>
@@ -19,18 +25,7 @@ const PostsTable = (props) => {
       </thead>{' '}
       {posts ? (
         <tbody>
-          {posts
-            .filter((val) => {
-              if (searchedWord === '') {
-                return val;
-              } else if (
-                val.expediente
-                  .toLowerCase()
-                  .includes(searchedWord.toLocaleLowerCase())
-              ) {
-                return val;
-              }
-            })
+          {filteredPosts
             .map((post, index) => (
               <tr key={index}>
                 <th scope="row">{index}</th>
