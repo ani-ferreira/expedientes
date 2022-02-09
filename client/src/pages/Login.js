@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { loginUser } from '../Services/authServices';
 import { Card } from 'react-bootstrap';
-
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [data, setdata] = useState({
     email: '',
@@ -21,7 +20,7 @@ const Login = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     loginUser(data);
-    history.replace('/');
+    navigate('/');
   };
 
   return (

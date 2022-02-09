@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPostById, getPostById } from '../store/postActions';
 
@@ -9,7 +9,7 @@ export default function EditPost() {
   const post = useSelector((state) => state.postsReducer.post);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPostById(id));
@@ -62,7 +62,7 @@ export default function EditPost() {
         });
       })
       .then(() => {
-        history.replace('/posts');
+        navigate('/posts');
       });
   }
 

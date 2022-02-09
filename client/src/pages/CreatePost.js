@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
@@ -18,7 +18,7 @@ const CreatePost = () => {
   const [validName, setValidName] = useState(false);
   const [nameFocus, setNameFocus] = useState(false);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function handleInputChange(e) {
     const newData = { ...data };
@@ -62,7 +62,7 @@ const CreatePost = () => {
         });
       })
       .then(() => {
-        history.replace('/');
+        navigate('/');
       });
   }
 
