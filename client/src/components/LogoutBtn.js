@@ -19,7 +19,7 @@ const LogoutBtn = () => {
         logoutBtn();
       }}
     >
-      Logout
+      Salir
     </button>
   );
 };

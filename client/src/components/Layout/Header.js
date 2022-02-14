@@ -1,6 +1,9 @@
 import LogoutBtn from '../LogoutBtn';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand active" href="/">
@@ -8,7 +11,7 @@ const Header = () => {
       </a>
 
       <div className="collapse navbar-collapse" id="navbarNav"></div>
-      <LogoutBtn />
+      {isAuth ? <LogoutBtn /> : null}
     </nav>
   );
 };
