@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <main className="App">
       <Header />
-      {/*  <h1 className="home-title">Gestión de expedientes</h1> */}
+      <h1 className="home-title">Gestión de expedientes</h1>
       <Outlet />
     </main>
   );
