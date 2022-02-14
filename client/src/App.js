@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import RequireAuth from '../src/components/RequireAuth';
 import CreatePost from './pages/CreatePost';
 import EditPost from './pages/EditPost';
 import AllPosts from './pages/AllPosts';
@@ -9,11 +10,6 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Layout from './components/Layout';
 
-{
-  /*  <Header/>
-      <h1 className="home-title">Gestión de expedientes</h1> */
-}
-
 const App = () => {
   return (
     <Routes>
@@ -21,12 +17,14 @@ const App = () => {
         {/*  public routes */}
         <Route path="/login" element={<Login />} />
         {/*  private routes */}
-        <Route path="/" exact element={<Home />} />
-        <Route path="/posts" element={<AllPosts />} />
-        <Route path="/add" element={<CreatePost />} />
-        <Route path="/edit/:id" element={<EditPost />} />
-        <Route path="/folders" element={<Folders />} exact />
-        <Route path="/folders/:folderlist" element={<StepsList />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/posts" element={<AllPosts />} />
+          <Route path="/add" element={<CreatePost />} />
+          <Route path="/edit/:id" element={<EditPost />} />
+          <Route path="/folders" element={<Folders />} exact />
+          <Route path="/folders/:folderlist" element={<StepsList />} />
+        </Route>
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
       </Route>

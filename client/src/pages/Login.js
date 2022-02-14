@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { loginUser } from '../Services/authServices';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { loginAuth } from '../store/authActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.authReducer.isAuth);
 
   const [data, setdata] = useState({
     email: '',
@@ -17,11 +20,12 @@ const Login = () => {
     setdata(userInput);
   };
 
-  const submitHandler = (e) => {
+  async function submitHandler(e) {
     e.preventDefault();
-    loginUser(data);
+    await dispatch(loginAuth(data));
+    console.log('auth is:' + auth);
     navigate('/');
-  };
+  }
 
   return (
     <>
@@ -33,6 +37,7 @@ const Login = () => {
             </label>
             <input
               type="email"
+              autoComplete="off"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"

@@ -1,19 +1,22 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../store/authReducer';
 
 const LogoutBtn = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    history.replace('/login');
+  const logoutBtn = () => {
+    dispatch(logout());
+    navigate('/login');
   };
 
   return (
     <button
       className="btn btn-danger"
       onClick={() => {
-        logout();
+        logoutBtn();
       }}
     >
       Logout
