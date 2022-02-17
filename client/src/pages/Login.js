@@ -1,18 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { loginAuth } from '../store/authActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../store/authReducer';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.authReducer.isAuth);
+  const { isAuth, isError, message } = useSelector(
+    (state) => state.authReducer
+  );
 
   const [data, setdata] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    if (isAuth) {
+      navigate('/');
+    }
+    console.log(isAuth, isError, message);
+  }, [isAuth, isError, message, navigate, dispatch]);
 
   const inputHandler = (e) => {
     const userInput = { ...data };
@@ -22,9 +35,7 @@ const Login = () => {
 
   async function submitHandler(e) {
     e.preventDefault();
-    await dispatch(loginAuth(data));
-    console.log('auth is:' + auth);
-    navigate('/');
+    await dispatch(login(data));
   }
 
   return (
@@ -49,7 +60,7 @@ const Login = () => {
               required
             />
             <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
+              {message}
             </div>
           </div>
           <div className="mb-3">
