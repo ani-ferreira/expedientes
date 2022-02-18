@@ -7,9 +7,7 @@ import { login } from '../store/authReducer';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuth, isError, message } = useSelector(
-    (state) => state.authReducer
-  );
+  const { isAuth, message } = useSelector((state) => state.authReducer);
 
   const [data, setdata] = useState({
     email: '',
@@ -17,15 +15,10 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     if (isAuth) {
       navigate('/');
     }
-    console.log(isAuth, isError, message);
-  }, [isAuth, isError, message, navigate, dispatch]);
+  }, [isAuth, message, navigate, dispatch]);
 
   const inputHandler = (e) => {
     const userInput = { ...data };
@@ -50,8 +43,6 @@ const Login = () => {
               type="email"
               autoComplete="off"
               className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
               onChange={(e) => {
                 inputHandler(e);
               }}
@@ -59,9 +50,6 @@ const Login = () => {
               name="email"
               required
             />
-            <div id="emailHelp" className="form-text">
-              {message}
-            </div>
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
@@ -70,7 +58,6 @@ const Login = () => {
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
               onChange={(e) => {
                 inputHandler(e);
               }}
@@ -79,6 +66,7 @@ const Login = () => {
               required
             />
           </div>
+          <span className="d-block mb-3 text-danger">{message}</span>
           <button className="btn btn-secondary">Ingresar</button>
         </form>
       </Card>

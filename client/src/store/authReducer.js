@@ -16,7 +16,15 @@ export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
   try {
     return await loginUser(user);
   } catch (error) {
-    const message = error.message || error.toString();
+    let message = '';
+    if (error.response.status === 400) {
+      message = 'Email no registrado/contraseña inválida';
+    } else if (error.response.status === 401) {
+      message = 'La contraseña debe tener al menos 6 carácteres';
+    } else {
+      message = 'Ingreso inválido';
+    }
+
     return thunkAPI.rejectWithValue(message);
   }
 });

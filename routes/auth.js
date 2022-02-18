@@ -38,7 +38,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   //Validate data before login
   const { error } = loginValidation(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) return res.status(401).send(error.details[0].message);
 
   //Check if email already exist in db
   const user = await User.findOne({ email: req.body.email });
