@@ -69,6 +69,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              autoComplete="off"
               className="form-control"
               name="password"
               value={data.password}
