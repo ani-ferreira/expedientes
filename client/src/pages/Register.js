@@ -1,15 +1,26 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../store/registerReducer';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { message, success } = useSelector((state) => state.registerReducer);
+
   const [data, setData] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
 
-  let message = '';
+  useEffect(() => {
+    if (success) {
+      navigate('/');
+    }
+  }, [message, success, navigate]);
 
   const inputHandler = (e) => {
     let userInput = { ...data };
@@ -17,9 +28,10 @@ const Register = () => {
     setData(userInput);
   };
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
-    console.log(data);
+
+    await dispatch(register(data));
   }
 
   return (
@@ -32,15 +44,15 @@ const Register = () => {
           }}
         >
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">
+            <label htmlFor="name" className="form-label">
               Nombre de usuario
             </label>
             <input
               type="text"
               autoComplete="off"
               className="form-control"
-              name="username"
-              value={data.username}
+              name="name"
+              value={data.name}
               onChange={(e) => {
                 inputHandler(e);
               }}

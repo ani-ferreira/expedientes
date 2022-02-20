@@ -1,10 +1,7 @@
 import axios from 'axios';
 
 export const registerUser = async (data) => {
-  const response = axios.post('/user/register', data);
-  if (response.data) {
-    console.log(response.data);
-  }
+  const response = await axios.post('/user/register', data);
   return response.data;
 };
 
