@@ -9,6 +9,8 @@ import StepsList from './components/Folders/StepsList';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Layout from './components/Layout';
+import Admin from './pages/Admin';
+import Register from './pages/Register';
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/edit/:id" element={<EditPost />} />
           <Route path="/folders" element={<Folders />} exact />
           <Route path="/folders/:folderlist" element={<StepsList />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/register" element={<Register />} />
         </Route>
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
