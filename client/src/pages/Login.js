@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <>
       <h3 className="banner text-center">
-        Bienvendido/a, ingrese sus datos para ingresar:
+        Bienvenido/a, ingrese sus datos para ingresar:
       </h3>
 
       <Card className="w-50 mt-5 mb-5  p-5 container">
