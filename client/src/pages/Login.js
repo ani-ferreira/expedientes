@@ -7,7 +7,9 @@ import { login } from '../store/authReducer';
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuth, message } = useSelector((state) => state.authReducer);
+  const { isAuth, message, isLoading } = useSelector(
+    (state) => state.authReducer
+  );
 
   const [data, setdata] = useState({
     email: '',
@@ -18,7 +20,7 @@ const Login = () => {
     if (isAuth) {
       navigate('/');
     }
-  }, [isAuth, message, navigate, dispatch]);
+  }, [isAuth, message, navigate]);
 
   const inputHandler = (e) => {
     const userInput = { ...data };
@@ -67,7 +69,13 @@ const Login = () => {
             />
           </div>
           <span className="d-block mb-3 text-danger">{message}</span>
-          <button className="btn btn-secondary">Ingresar</button>
+          <button className="btn btn-secondary">
+            {isLoading ? (
+              <div className="spinner-border spinner-border-sm" role="status" />
+            ) : (
+              'Ingresar'
+            )}
+          </button>
         </form>
       </Card>
     </>

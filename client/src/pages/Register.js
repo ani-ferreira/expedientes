@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { message, success } = useSelector((state) => state.registerReducer);
+  const { message, success, isLoading } = useSelector(
+    (state) => state.registerReducer
+  );
 
   const [data, setData] = useState({
     name: '',
@@ -92,7 +94,14 @@ const Register = () => {
             />
           </div>
           <span className="d-block mb-3 text-danger">{message}</span>
-          <button className="btn btn-secondary">Crear usuario</button>
+          <button className="btn btn-secondary">
+            {' '}
+            {isLoading ? (
+              <div className="spinner-border spinner-border-sm" role="status" />
+            ) : (
+              'Crear usuario'
+            )}
+          </button>
         </form>
       </Card>
     </>
