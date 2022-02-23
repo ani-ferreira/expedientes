@@ -34,7 +34,7 @@ const postsSlice = createSlice({
         post: action.payload,
       }))
       .addCase(editPostById.fulfilled, (state, action) => {
-        const editPost = state.posts.map((postItem) =>
+        const editPost = state.posts.posts.map((postItem) =>
           postItem.id === action.payload.id ? action.payload : postItem
         );
         return {
