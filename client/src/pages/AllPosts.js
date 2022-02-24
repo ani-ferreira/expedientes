@@ -24,15 +24,14 @@ const AllPosts = () => {
       cancelButtonText: 'Cancelar',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Eliminar',
-    })
-      .then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire('Eliminado!', 'El movimiento ha sido eliminado', 'success');
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Eliminado!', 'El movimiento ha sido eliminado', 'success');
 
-          dispatch(deletePost(id));
-        }
-      })
-      .then(dispatch(getPosts()));
+        dispatch(deletePost(id));
+        dispatch(getPosts());
+      }
+    });
   };
 
   return (

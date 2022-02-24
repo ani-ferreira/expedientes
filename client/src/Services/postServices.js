@@ -1,9 +1,14 @@
 import axios from 'axios';
 
+const getHeaders = () => {
+  const token = localStorage.getItem('token');
+  return { Authorization: token };
+};
+
 //get all
 export const setPosts = async () => {
   try {
-    const result = await axios.get('/posts');
+    const result = await axios.get('/posts', { headers: getHeaders() });
     return result.data;
   } catch (error) {
     throw new Error(error?.message);
@@ -13,7 +18,7 @@ export const setPosts = async () => {
 //create
 export const newPost = async (data) => {
   try {
-    const req = await axios.post('/posts/add', data);
+    const req = await axios.post('/posts/add', data, { headers: getHeaders() });
     return req.data;
   } catch (error) {
     throw new Error(error?.message);
@@ -23,7 +28,9 @@ export const newPost = async (data) => {
 //edit
 export const updatePostById = async (id, data) => {
   try {
-    const req = await axios.put(`/posts/update/${id}`, data);
+    const req = await axios.put(`/posts/update/${id}`, data, {
+      headers: getHeaders(),
+    });
     return req.data;
   } catch (error) {
     throw new Error(error?.message);
@@ -33,7 +40,9 @@ export const updatePostById = async (id, data) => {
 //delete
 export const deletePostById = async (id) => {
   try {
-    const req = await axios.delete(`/posts/delete/${id}`);
+    const req = await axios.delete(`/posts/delete/${id}`, {
+      headers: getHeaders(),
+    });
     return req.data;
   } catch (error) {
     throw new Error(error?.message);
@@ -43,7 +52,7 @@ export const deletePostById = async (id) => {
 //
 export const getById = async (id) => {
   try {
-    const req = await axios.get(`/posts/info/${id}`);
+    const req = await axios.get(`/posts/info/${id}`, { headers: getHeaders() });
     return req.data;
   } catch (error) {
     throw new Error(error?.message);
