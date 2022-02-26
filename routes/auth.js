@@ -3,9 +3,11 @@ const { User } = require('../models/User');
 const { registerValidation, loginValidation } = require('../validation');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const verifyRoles = require('.././middlewares/verifyRole');
+const verify = require('../middlewares/verifytoken');
 
 //Registration
-router.post('/register', async (req, res) => {
+router.post('/register', verifyRoles('admin'), async (req, res) => {
   //Validate data before save user
   //Joi: If the input is invalid, error is assigned a ValidationError
   //object providing more info.
@@ -24,6 +26,7 @@ router.post('/register', async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
+    role: req.body.role,
     password: hashedPassword,
   });
   try {
@@ -49,8 +52,23 @@ router.post('/login', async (req, res) => {
   if (!validPassword) return res.status(400).send('Invalid password');
 
   //Create and assign a token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+  const token = jwt.sign(
+    {
+      UserInfo: {
+        _id: user._id,
+        role: user.role,
+      },
+    },
+    process.env.TOKEN_SECRET
+  );
   res.header('authorization', token).send(token);
+});
+
+router.get('/checkRole', [verifyRoles('admin'), verify], async (req, res) => {
+  User.find().exec((err, posts) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, posts: posts });
+  });
 });
 
 module.exports = router;

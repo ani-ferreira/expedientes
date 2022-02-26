@@ -24,6 +24,12 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  /* nuevo */
+  role: {
+    type: String,
+    default: 'editor',
+    required: true,
+  },
 });
 
 module.exports = {

@@ -16,6 +16,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
+    role: '',
   });
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const Register = () => {
     e.preventDefault();
 
     await dispatch(register(data));
+    console.log(data);
   }
 
   return (
@@ -93,6 +95,21 @@ const Register = () => {
               required
             />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="tipo">Tipo de usuario:</label>
+            <select
+              className="form-control"
+              name="role"
+              required
+              onChange={(e) => inputHandler(e)}
+            >
+              <option value="">Seleccionar</option>
+              <option value={data.role.admin}>admin</option>
+              <option value={data.role.editor}>editor</option>
+            </select>
+          </div>
+
           <span className="d-block mb-3 text-danger">{message}</span>
           <button className="btn btn-secondary">
             {' '}

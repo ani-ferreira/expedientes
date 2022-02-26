@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const getHeaders = () => {
+  const token = localStorage.getItem('token');
+  return { Authorization: token };
+};
+
 export const registerUser = async (data) => {
-  const response = await axios.post('/user/register', data);
+  const response = await axios.post('/user/register', data, {
+    headers: getHeaders(),
+  });
   return response.data;
 };
 
