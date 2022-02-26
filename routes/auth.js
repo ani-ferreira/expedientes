@@ -61,7 +61,16 @@ router.post('/login', async (req, res) => {
     },
     process.env.TOKEN_SECRET
   );
-  res.header('authorization', token).send(token);
+  let role = '';
+
+  jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+    if (err) return res.sendStatus(403); //invalid token
+    req.role = decoded.UserInfo.role;
+    role = req.role;
+  });
+  /*   res.header('authorization', token).send( token );
+   */
+  res.header('authorization', token).send({ token, role });
 });
 
 router.get('/checkRole', [verifyRoles('admin'), verify], async (req, res) => {
