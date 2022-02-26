@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { loginUser } from '../Services/authServices';
 
 const token = localStorage.getItem('token');
+const role = localStorage.getItem('role');
 
 const initialState = {
   token: token ? token : null,
@@ -9,6 +10,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   message: '',
+  role: role ? role : null,
 };
 
 export const login = createAsyncThunk('auth/login', async (user, thunkAPI) => {
@@ -35,6 +37,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       window.localStorage.removeItem('token');
+      window.localStorage.removeItem('role');
       return {
         ...state,
         isAuth: false,
@@ -53,7 +56,8 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuth = true;
-        state.token = action.payload;
+        state.token = action.payload.token;
+        state.role = action.payload.role;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;

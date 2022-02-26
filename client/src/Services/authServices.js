@@ -15,9 +15,10 @@ export const registerUser = async (data) => {
 export const loginUser = async (data) => {
   const response = await axios.post('/user/login', data);
   if (response.data) {
-    console.log(JSON.stringify(response?.data));
+    console.log(response?.data);
 
     localStorage.setItem('token', response.data.token);
+    localStorage.setItem('role', response.data.role);
   }
   return response.data;
 };
