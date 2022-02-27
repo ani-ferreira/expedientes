@@ -42,7 +42,7 @@ const Login = () => {
       <Card className="w-50 mt-5 mb-5  p-5 container">
         <form onSubmit={(e) => submitHandler(e)}>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="Email" className="form-label">
               Email
             </label>
             <input
@@ -58,7 +58,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label htmlFor="Password" className="form-label">
               Contraseña
             </label>
             <input
