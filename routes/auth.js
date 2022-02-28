@@ -68,16 +68,8 @@ router.post('/login', async (req, res) => {
     req.role = decoded.UserInfo.role;
     role = req.role;
   });
-  /*   res.header('authorization', token).send( token );
-   */
-  res.header('authorization', token).send({ token, role });
-});
 
-router.get('/checkRole', [verifyRoles('admin'), verify], async (req, res) => {
-  User.find().exec((err, posts) => {
-    if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, posts: posts });
-  });
+  res.header('authorization', token).send({ token, role });
 });
 
 module.exports = router;
