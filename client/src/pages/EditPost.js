@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPostById, getPostById } from '../store/postActions';
+import Form from '../components/Form';
 
 export default function EditPost() {
   const post = useSelector((state) => state.postsReducer.post);
@@ -17,38 +18,15 @@ export default function EditPost() {
 
   console.log(post);
 
-  const [data, setData] = useState({
-    fecha: '',
-    expediente: '',
-    movimiento: '',
-    tipo: '',
-  });
+  let newData = {};
 
-  const [validName, setValidName] = useState(false);
-  const [nameFocus, setNameFocus] = useState(false);
+  function onSaveDataHandler(data) {
+    newData = { ...data };
+  }
 
-  const { fecha, expediente, movimiento } = data;
-  const handleInputChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-
-    if (e.target.value !== '') {
-      setValidName(true);
-    }
-  };
-
-  function onSubmit(e) {
-    e.preventDefault();
-    setNameFocus(true);
-    var letters = /^[a-zA-Z\s]*$/;
-    if (!data.expediente.match(letters)) {
-      setValidName(false);
-      return;
-    }
-
-    setValidName(true);
-
+  function onSubmit() {
     async function editingPost() {
-      dispatch(editPostById({ id: id, data: data }));
+      dispatch(editPostById({ id: id, data: newData }));
     }
 
     editingPost()
@@ -69,76 +47,11 @@ export default function EditPost() {
   return (
     <div className="col-md-10 mt-3 mx-auto">
       <h1 className="h3 mb-3 font-weight-normal">Ingresar datos</h1>
-      <form>
-        {/*  1 */}
-        <br />
-        <div className="form-group">
-          <label>Fecha:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="fecha"
-            placeholder={post.fecha}
-            value={fecha}
-            onChange={(e) => handleInputChange(e)}
-            required
-          />
-        </div>
-        {/*  2 */}
-        <br />
-        <div className="form-group">
-          <label>Expediente:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="expediente"
-            placeholder={post.expediente}
-            value={expediente}
-            onChange={(e) => handleInputChange(e)}
-            required
-            pattern="[A-Za-z]"
-            title="No ingresar números ni caracteres especiales. Sólo texto."
-          />
-          {!validName && nameFocus && (
-            <span className="error">
-              No ingresar números ni caracteres especiales.
-            </span>
-          )}
-        </div>
-        {/*  3 */}
-        <br />
-        <div className="form-group">
-          <label>Movimiento:</label>
-          <input
-            type="text"
-            className="form-control"
-            name="movimiento"
-            placeholder={post.movimiento}
-            value={movimiento}
-            onChange={(e) => handleInputChange(e)}
-            required
-          />
-        </div>
-        {/*  4 */}
-        <br />
-        <div className="form-group">
-          <label htmlFor="tipo">Tipo:</label>
-          <select
-            className="form-control"
-            name="tipo"
-            required
-            onChange={(e) => handleInputChange(e)}
-          >
-            <option value="">Seleccionar</option>
-            <option value={data.tipo.judicial}>judicial</option>
-            <option value={data.tipo.extrajudicial}>extrajudicial</option>
-          </select>
-        </div>
-        <br />
-        <button className="btn btn-success" type="submit" onClick={onSubmit}>
-          &nbsp; &nbsp;Guardar cambios
-        </button>
-      </form>
+      <Form
+        onSubmit={onSubmit}
+        onSaveDataHandler={onSaveDataHandler}
+        post={post}
+      />
     </div>
   );
 }
