@@ -13,7 +13,7 @@ const HomeCards = () => {
     <>
       {' '}
       <h3 className=" banner">Control de expedientes</h3>
-      <Container className={styles.container}>
+      <Container className="mt-5 mb-5">
         <Row className="gy-5">
           <Col>
             <Card className={styles.card}>

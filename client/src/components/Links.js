@@ -1,12 +1,12 @@
-import { Card, Col, Row, Container } from "react-bootstrap";
+import { Card, Col, Row, Container } from 'react-bootstrap';
 
-import styles from "../../src/components/styles/Links.module.css";
+import styles from '../../src/components/styles/Links.module.css';
 
 const Links = () => {
   return (
     <>
       <h3 className="banner">Mesa de entradas virtual</h3>
-      <Container className={styles.container}>
+      <Container className="mt-5 mb-5">
         <Row className="gy-5">
           <Col>
             <a
@@ -41,11 +41,11 @@ const Links = () => {
             >
               <Card className={styles.card}>
                 <Card.Title>ANSES</Card.Title>
-              </Card>{" "}
+              </Card>{' '}
             </a>
           </Col>
           <Col>
-            {" "}
+            {' '}
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -54,7 +54,7 @@ const Links = () => {
             >
               <Card className={styles.card}>
                 <Card.Title>NOTIFICACIONES</Card.Title>
-              </Card>{" "}
+              </Card>{' '}
             </a>
           </Col>
         </Row>

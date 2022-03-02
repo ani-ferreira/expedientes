@@ -8,11 +8,7 @@ html,
 body {
   margin: 0;
 }
-.title {
-  padding: 3rem;
-  margin: auto;
-  text-align: center;
-}
+
 .margin {
   margin: 2rem;
 }
@@ -30,9 +26,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  font-size: 4rem;
+  font-size: 300%;
   width: 100%;
-  padding: 4rem;
   text-align: center;
   text-shadow: 3px 2px #303030;
 }

@@ -23,7 +23,7 @@ const Folders = () => {
       {steps ? (
         <div className="container">
           <div className="container">
-            <h2 className="title">Carpetas</h2>
+            <h2 className="text-center">Carpetas</h2>
           </div>
           <FoldersList folder={uniqueFol} steps={steps} />
         </div>
