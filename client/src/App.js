@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import Layout from './components/Layout';
 import Admin from './pages/Admin';
 import Register from './pages/Register';
+import RequireAdmin from './components/RequireAdmin';
+import Unathorized from './pages/Unathorized';
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         {/*  public routes */}
         <Route path="/login" element={<Login />} />
+        <Route path="/unathorized" element={<Unathorized />} />
         {/*  private routes */}
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
@@ -26,8 +29,10 @@ const App = () => {
           <Route path="/edit/:id" element={<EditPost />} />
           <Route path="/folders" element={<Folders />} exact />
           <Route path="/folders/:folderlist" element={<StepsList />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/register" element={<Register />} />
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Route>
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
