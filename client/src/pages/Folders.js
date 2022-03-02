@@ -12,8 +12,6 @@ const Folders = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
-  console.log(steps);
-
   let uniqueFol = [];
 
   if (steps) {
