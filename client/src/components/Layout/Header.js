@@ -1,6 +1,6 @@
 import LogoutBtn from '../LogoutBtn';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
@@ -8,15 +8,25 @@ const Header = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link to="/" className="navbar-brand active">
+      <NavLink to="/" className="navbar-brand">
         &nbsp; Home
-      </Link>
+      </NavLink>
 
       <div className="collapse navbar-collapse" id="navbarNav"></div>
       {isAuth && isAdmin === 'admin' ? (
-        <Link to="/admin" className="navbar-brand active">
-          &nbsp; Admin
-        </Link>
+        <NavLink
+          to="/admin"
+          style={({ isActive }) => {
+            return {
+              display: 'block',
+              margin: '1rem ',
+              color: 'white',
+              textDecoration: isActive ? '' : 'none',
+            };
+          }}
+        >
+          &nbsp;Admin
+        </NavLink>
       ) : null}
       {isAuth ? <LogoutBtn /> : null}
     </nav>
