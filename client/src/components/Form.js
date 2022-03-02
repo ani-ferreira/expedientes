@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Form = (props) => {
   const [data, setData] = useState({
-    fecha: props.post ? props.post.fecha : '',
-    expediente: props.post ? props.post.expediente : '',
-    movimiento: props.post ? props.post.movimiento : '',
+    fecha: '',
+    expediente: '',
+    movimiento: '',
     tipo: '',
   });
+
+  useEffect(() => {
+    setData({
+      fecha: props.post ? props.post.fecha : '',
+      expediente: props.post ? props.post.expediente : '',
+      movimiento: props.post ? props.post.movimiento : '',
+      tipo: '',
+    });
+  }, [props.post]);
 
   const [validName, setValidName] = useState(false);
   const [nameFocus, setNameFocus] = useState(false);
@@ -22,13 +31,7 @@ const Form = (props) => {
     }
   }
 
-  const newDataObj = {
-    fecha: data.fecha,
-    expediente: data.expediente,
-    movimiento: data.movimiento,
-    tipo: data.tipo,
-  };
-
+  //send input data to parent component
   const sendData = (e) => {
     e.preventDefault();
     setNameFocus(true);
@@ -40,7 +43,7 @@ const Form = (props) => {
     }
 
     setValidName(true);
-    props.onSaveDataHandler(newDataObj);
+    props.onSaveDataHandler(data);
     props.onSubmit();
   };
 
@@ -54,7 +57,7 @@ const Form = (props) => {
           type="text"
           className="form-control"
           name="fecha"
-          placeholder={props.post ? props.post.fecha : 'Ingresar fecha'}
+          placeholder="Ingresar fecha"
           value={data.fecha}
           onChange={(e) => handleInputChange(e)}
           required
