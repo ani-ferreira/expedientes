@@ -22,7 +22,7 @@ const PostsTable = (props) => {
           <th scope="col">Tipo</th>
           <th scope="col">Acciones</th>
         </tr>
-      </thead>{' '}
+      </thead>
       {posts ? (
         <tbody>
           {filteredPosts
@@ -55,7 +55,13 @@ const PostsTable = (props) => {
             .reverse()}
         </tbody>
       ) : (
-        <LoadingSpinner />
+        <tbody>
+          <tr>
+            <td>
+              <LoadingSpinner />
+            </td>
+          </tr>
+        </tbody>
       )}
     </table>
   );
