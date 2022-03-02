@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../store/registerReducer';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,13 @@ const Register = () => {
 
     await dispatch(register(data));
     console.log(data);
+    Swal.fire({
+      title: 'Guardado!',
+      text: 'Se registro el usuario correctamente.',
+      icon: 'success',
+      confirmButtonText: 'Salir',
+      timer: 1600,
+    });
   }
 
   return (
