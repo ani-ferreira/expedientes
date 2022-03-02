@@ -37,7 +37,7 @@ const StepsList = () => {
 
   return (
     <div className="container">
-      <div class=" d-flex justify-content-between margin">
+      <div className=" d-flex justify-content-between margin">
         <div>
           <h2>Carátula:</h2>
           <h5>"{params.folderlist}"</h5>
@@ -65,7 +65,7 @@ const StepsList = () => {
             {steps
               .filter((post) => post.expediente === params.folderlist)
               .map((post, index) => (
-                <tr>
+                <tr key={index}>
                   <th scope="row">{index}</th>
                   <td>{post.fecha}</td>
                   <td>{post.movimiento}</td>
@@ -89,7 +89,13 @@ const StepsList = () => {
               ))}
           </tbody>
         ) : (
-          <LoadingSpinner />
+          <tbody>
+            <tr>
+              <td>
+                <LoadingSpinner />
+              </td>
+            </tr>
+          </tbody>
         )}
       </table>
     </div>
