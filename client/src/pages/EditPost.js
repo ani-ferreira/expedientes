@@ -16,8 +16,6 @@ export default function EditPost() {
     dispatch(getPostById(id));
   }, [dispatch, id]);
 
-  console.log(post);
-
   let newData = {};
 
   function onSaveDataHandler(data) {
