@@ -10,7 +10,7 @@ import {
 const initialState = {
   status: null,
   posts: [],
-  post: {},
+  post: { fecha: '', expediente: '', movimiento: '', tipo: '' },
   error: null,
 };
 
