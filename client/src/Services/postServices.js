@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
-  return { Authorization: token };
+  return { Authorization: `Bearer ${token}` };
 };
 
 //get all
