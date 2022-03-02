@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import styles from '../styles/FoldersList.module.css';
 
 const FoldersList = (props) => {
   //abc order for the folder`s array
@@ -7,13 +6,13 @@ const FoldersList = (props) => {
 
   return (
     <>
-      <div className={styles.container}>
-        <ul>
+      <div>
+        <ul className="text-center">
           {sortedArray.map((item, index) => (
             <li key={index}>
               <Link
                 to={`/folders/${item}`}
-                className="btn btn-secondary btn-lg"
+                className="btn btn-secondary btn-lg mt-4"
               >
                 {item}
               </Link>
