@@ -4,7 +4,6 @@ const { registerValidation, loginValidation } = require('../validation');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const verifyRoles = require('.././middlewares/verifyRole');
-const verify = require('../middlewares/verifytoken');
 
 //Registration
 router.post('/register', verifyRoles('admin'), async (req, res) => {
