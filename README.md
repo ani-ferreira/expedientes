@@ -14,7 +14,9 @@
 ## General Information
 
 Inside the workflow of a law firm, it can happen (if they are working on many cases) that they lose track of the status of each one.
+
 In some of those law firms, updates are normally recorded in writing or saving data in several excel sheets, but these methods can be very slow and cumbersome when the amount of work increases.
+
 This web app would allow them to have all the updates they need in one place, plus it is very easy and intuitive to use.
 
 ## Technologies Used
@@ -75,5 +77,5 @@ Once the dependencies are installed, you can run `npm run dev` to start the appl
 
 To do:
 
-- A datepicker to the form that displays a calendar along with a date input field
-- A button that allows to delete an entire folder
+- Add a datepicker to the form that displays a calendar along with a date input field
+- Add a button that allows to delete an entire folder
