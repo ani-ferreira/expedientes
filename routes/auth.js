@@ -58,7 +58,8 @@ router.post('/login', async (req, res) => {
         role: user.role,
       },
     },
-    process.env.TOKEN_SECRET
+    process.env.TOKEN_SECRET,
+    { expiresIn: '1h' }
   );
   let role = '';
 
