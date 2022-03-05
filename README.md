@@ -78,4 +78,4 @@ Once the dependencies are installed, you can run `npm run dev` to start the appl
 To do:
 
 - Add a datepicker to the form that displays a calendar along with a date input field
-- Add a button that allows to delete an entire folder
+- Log out user when JWT expires
