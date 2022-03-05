@@ -78,4 +78,4 @@ Once the dependencies are installed, you can run `npm run dev` to start the appl
 To do:
 
 - Add a datepicker to the form that displays a calendar along with a date input field
-- Log out user when JWT expires
+- Display some message for the user to know they are logged out (when JWT expires). At the moment they are just being redirected to login page.
