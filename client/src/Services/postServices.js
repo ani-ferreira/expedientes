@@ -5,13 +5,32 @@ const getHeaders = () => {
   return { Authorization: `Bearer ${token}` };
 };
 
+/* const customAxios = axios.create({
+  baseUrl: '/posts',
+  headers: getHeaders(),
+});
+
+//axios interceptors to handle logout if JWT expired(error 403)
+customAxios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+  }
+);
+ */
 //get all
 export const setPosts = async () => {
   try {
     const result = await axios.get('/posts', { headers: getHeaders() });
     return result.data;
   } catch (error) {
-    throw new Error(error?.message);
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
   }
 };
 
@@ -21,7 +40,10 @@ export const newPost = async (data) => {
     const req = await axios.post('/posts/add', data, { headers: getHeaders() });
     return req.data;
   } catch (error) {
-    throw new Error(error?.message);
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
   }
 };
 
@@ -33,7 +55,10 @@ export const updatePostById = async (id, data) => {
     });
     return req.data;
   } catch (error) {
-    throw new Error(error?.message);
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
   }
 };
 
@@ -45,7 +70,10 @@ export const deletePostById = async (id) => {
     });
     return req.data;
   } catch (error) {
-    throw new Error(error?.message);
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
   }
 };
 
@@ -55,6 +83,9 @@ export const getById = async (id) => {
     const req = await axios.get(`/posts/info/${id}`, { headers: getHeaders() });
     return req.data;
   } catch (error) {
-    throw new Error(error?.message);
+    if (error.response.status === 403) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
   }
 };
