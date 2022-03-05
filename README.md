@@ -65,7 +65,8 @@ This web app would allow them to have all the updates they need in one place, pl
 
 ## Video demo
 
-https://user-images.githubusercontent.com/73915239/144918840-89c26e52-fed9-4b37-97c6-69b03e8d9da2.mp4
+https://user-images.githubusercontent.com/73915239/156864194-337ecd3f-7e5b-4b1c-bfc5-d9d03db6eedc.mp4
+
 
 ## Setup
 
