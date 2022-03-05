@@ -58,7 +58,8 @@ This web app would allow them to have all the updates they need in one place, pl
 
 ## Features
 
-- Registration and protected login as editor or admin
+- Registration and login as editor or admin
+- Protected routes
 - Create, read, edit and delete updates (editor and admin)
 - Updates saved in MondoDB
 - Admin can register a new user as editor or admin
