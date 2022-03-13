@@ -28,7 +28,7 @@ export const setPosts = async () => {
     return result.data;
   } catch (error) {
     if (error.response.status === 403) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       window.location.href = '/login';
     }
   }
@@ -41,7 +41,7 @@ export const newPost = async (data) => {
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       window.location.href = '/login';
     }
   }
@@ -56,7 +56,7 @@ export const updatePostById = async (id, data) => {
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       window.location.href = '/login';
     }
   }
@@ -71,7 +71,7 @@ export const deletePostById = async (id) => {
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       window.location.href = '/login';
     }
   }
@@ -84,7 +84,7 @@ export const getById = async (id) => {
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
-      localStorage.removeItem('token');
+      localStorage.clear();
       window.location.href = '/login';
     }
   }
