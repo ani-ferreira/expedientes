@@ -36,23 +36,18 @@ const AllPosts = () => {
 
   return (
     <div className="container">
-      <div className="margin">
-        <div className="row">
-          <div className="col-lg-9 mt-2 mb-2">
-            <h2>Todos los movimientos</h2>
-          </div>
-          <div className="col-lg-3 mt-2 mb-2">
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Filtrar por nombre de expediente"
-              name="searchTerm"
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-            ></input>
-          </div>
-        </div>
+      <h3 className="banner">Todos los movimientos</h3>
+
+      <div className="col-lg-3 mt-5 mb-2">
+        <input
+          className="form-control"
+          type="search"
+          placeholder="Filtrar por nombre de expediente"
+          name="searchTerm"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        ></input>
       </div>
       <br />
       <PostsTable posts={posts} searchTerm={searchTerm} onDelete={onDelete} />

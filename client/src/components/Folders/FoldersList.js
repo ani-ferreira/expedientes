@@ -4,6 +4,15 @@ const FoldersList = (props) => {
   //abc order for the folder`s array
   const sortedArray = props.folder.sort();
 
+  let viewIsSmall = 'btn-md';
+
+  if (window.matchMedia('(max-width: 700px)').matches) {
+    // Viewport is less or equal to 700 pixels wide
+    viewIsSmall = 'btn-md';
+  } else {
+    // Viewport is greater than 700 pixels wide
+    viewIsSmall = 'btn-lg';
+  }
   return (
     <>
       <div>
@@ -12,7 +21,7 @@ const FoldersList = (props) => {
             <li key={index}>
               <Link
                 to={`/folders/${item}`}
-                className="btn btn-secondary btn-md mt-4"
+                className={`btn btn-secondary ${viewIsSmall} mt-4`}
               >
                 {item}
               </Link>

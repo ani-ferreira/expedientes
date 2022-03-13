@@ -36,7 +36,7 @@ const CreatePost = () => {
 
   return (
     <div className="col-md-10 mt-3 mx-auto">
-      <h1 className="h3 mb-3 font-weight-normal">Ingresar datos</h1>
+      <h3 className="banner">Ingresar datos</h3>
       <Form onSubmit={onSubmit} onSaveDataHandler={onSaveDataHandler} />
     </div>
   );

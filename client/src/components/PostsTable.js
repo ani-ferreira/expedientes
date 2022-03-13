@@ -11,6 +11,16 @@ const PostsTable = (props) => {
       .includes(searchedWord.toLocaleLowerCase());
   });
 
+  let viewIsSmall = true;
+
+  if (window.matchMedia('(max-width: 700px)').matches) {
+    // Viewport is less or equal to 700 pixels wide
+    viewIsSmall = true;
+  } else {
+    // Viewport is greater than 700 pixels wide
+    viewIsSmall = false;
+  }
+
   return (
     <div class="table-responsive-sm">
       <table class="table">
@@ -20,7 +30,7 @@ const PostsTable = (props) => {
             <th scope="col">Fecha</th>
             <th scope="col">Expediente</th>
             <th scope="col">Movimiento</th>
-            <th scope="col">Tipo</th>
+            {!viewIsSmall && <th scope="col">Tipo</th>}
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -33,7 +43,7 @@ const PostsTable = (props) => {
                   <td>{post.fecha}</td>
                   <td>{post.expediente}</td>
                   <td>{post.movimiento}</td>
-                  <td>{post.tipo}</td>
+                  {!viewIsSmall && <td>{post.tipo}</td>}
                   <td>
                     <Link
                       to={`/edit/${post._id}`}
