@@ -68,7 +68,7 @@ const StepsList = () => {
                   <td>{post.fecha}</td>
                   <td>{post.movimiento}</td>
                   <td>{post.tipo}</td>
-                  <td>
+                  <td className="td">
                     <Link
                       className="btn btn-outline-warning"
                       to={`/edit/${post._id}`}

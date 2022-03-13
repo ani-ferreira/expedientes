@@ -44,7 +44,7 @@ const PostsTable = (props) => {
                   <td>{post.expediente}</td>
                   <td>{post.movimiento}</td>
                   {!viewIsSmall && <td>{post.tipo}</td>}
-                  <td>
+                  <td className="td">
                     <Link
                       to={`/edit/${post._id}`}
                       className="btn btn-outline-warning m-1"
