@@ -39,49 +39,54 @@ const Login = () => {
         Bienvenido/a, ingrese sus datos para ingresar:
       </h3>
 
-      <Card className="w-50 mt-5 mb-5  p-5 container">
-        <form onSubmit={(e) => submitHandler(e)}>
-          <div className="mb-3">
-            <label htmlFor="Email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              autoComplete="off"
-              className="form-control"
-              onChange={(e) => {
-                inputHandler(e);
-              }}
-              value={data.email}
-              name="email"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="Password" className="form-label">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              onChange={(e) => {
-                inputHandler(e);
-              }}
-              name="password"
-              value={data.password}
-              required
-            />
-          </div>
-          <span className="d-block mb-3 text-danger">{message}</span>
-          <button className="btn btn-secondary">
-            {isLoading ? (
-              <div className="spinner-border spinner-border-sm" role="status" />
-            ) : (
-              'Ingresar'
-            )}
-          </button>
-        </form>
-      </Card>
+      <div class="col-xs-12 col-sm-6 col-md-4 container">
+        <Card className="mt-5 mb-5  p-5 container">
+          <form onSubmit={(e) => submitHandler(e)}>
+            <div className="mb-3">
+              <label htmlFor="Email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                autoComplete="off"
+                className="form-control"
+                onChange={(e) => {
+                  inputHandler(e);
+                }}
+                value={data.email}
+                name="email"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="Password" className="form-label">
+                Contraseña
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                onChange={(e) => {
+                  inputHandler(e);
+                }}
+                name="password"
+                value={data.password}
+                required
+              />
+            </div>
+            <span className="d-block mb-3 text-danger">{message}</span>
+            <button className="btn btn-secondary">
+              {isLoading ? (
+                <div
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                />
+              ) : (
+                'Ingresar'
+              )}
+            </button>
+          </form>
+        </Card>
+      </div>
     </>
   );
 };
