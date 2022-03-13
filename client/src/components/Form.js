@@ -48,7 +48,7 @@ const Form = (props) => {
   };
 
   return (
-    <form onSubmit={sendData}>
+    <form onSubmit={sendData} className="p-4">
       {/*  1 */}
       <br />
       <div className="form-group">

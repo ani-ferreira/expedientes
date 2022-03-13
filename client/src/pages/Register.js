@@ -49,86 +49,91 @@ const Register = () => {
   return (
     <>
       <h3 className="banner">Registrar usuario</h3>
-      <Card className="w-50 mt-5 mb-5  p-5 container">
-        <form
-          onSubmit={(e) => {
-            submitHandler(e);
-          }}
-        >
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Nombre de usuario
-            </label>
-            <input
-              type="text"
-              autoComplete="off"
-              className="form-control"
-              name="name"
-              value={data.name}
-              onChange={(e) => {
-                inputHandler(e);
-              }}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              autoComplete="off"
-              className="form-control"
-              name="email"
-              value={data.email}
-              onChange={(e) => {
-                inputHandler(e);
-              }}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Contraseña
-            </label>
-            <input
-              type="password"
-              autoComplete="off"
-              className="form-control"
-              name="password"
-              value={data.password}
-              onChange={(e) => {
-                inputHandler(e);
-              }}
-              required
-            />
-          </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 container">
+        <Card className="mt-5 mb-5  p-5 container">
+          <form
+            onSubmit={(e) => {
+              submitHandler(e);
+            }}
+          >
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">
+                Nombre de usuario
+              </label>
+              <input
+                type="text"
+                autoComplete="off"
+                className="form-control"
+                name="name"
+                value={data.name}
+                onChange={(e) => {
+                  inputHandler(e);
+                }}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                autoComplete="off"
+                className="form-control"
+                name="email"
+                value={data.email}
+                onChange={(e) => {
+                  inputHandler(e);
+                }}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Contraseña
+              </label>
+              <input
+                type="password"
+                autoComplete="off"
+                className="form-control"
+                name="password"
+                value={data.password}
+                onChange={(e) => {
+                  inputHandler(e);
+                }}
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="tipo">Tipo de usuario:</label>
-            <select
-              className="form-control"
-              name="role"
-              required
-              onChange={(e) => inputHandler(e)}
-            >
-              <option value="">Seleccionar</option>
-              <option value={data.role.admin}>admin</option>
-              <option value={data.role.editor}>editor</option>
-            </select>
-          </div>
+            <div className="form-group">
+              <label htmlFor="tipo">Tipo de usuario:</label>
+              <select
+                className="form-control"
+                name="role"
+                required
+                onChange={(e) => inputHandler(e)}
+              >
+                <option value="">Seleccionar</option>
+                <option value={data.role.admin}>admin</option>
+                <option value={data.role.editor}>editor</option>
+              </select>
+            </div>
 
-          <span className="d-block mb-3 text-danger">{message}</span>
-          <button className="btn btn-secondary">
-            {' '}
-            {isLoading ? (
-              <div className="spinner-border spinner-border-sm" role="status" />
-            ) : (
-              'Crear usuario'
-            )}
-          </button>
-        </form>
-      </Card>
+            <span className="d-block mb-3 text-danger">{message}</span>
+            <button className="btn btn-secondary">
+              {' '}
+              {isLoading ? (
+                <div
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                />
+              ) : (
+                'Crear usuario'
+              )}
+            </button>
+          </form>
+        </Card>
+      </div>
     </>
   );
 };

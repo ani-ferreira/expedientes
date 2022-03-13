@@ -12,7 +12,7 @@ const FoldersList = (props) => {
             <li key={index}>
               <Link
                 to={`/folders/${item}`}
-                className="btn btn-secondary btn-lg mt-4"
+                className="btn btn-secondary btn-md mt-4"
               >
                 {item}
               </Link>
