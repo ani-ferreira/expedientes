@@ -7,9 +7,12 @@ html,
 }
 
 body {
-  overflow-x: hidden;
+  margin: 0;
 }
-
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
 .margin {
   margin: 2rem;
 }
