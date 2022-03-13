@@ -53,7 +53,6 @@ const StepsList = () => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">ID</th>
             <th scope="col">Fecha</th>
             <th scope="col">Movimiento</th>
             <th scope="col">Tipo</th>
@@ -66,7 +65,6 @@ const StepsList = () => {
               .filter((post) => post.expediente === params.folderlist)
               .map((post, index) => (
                 <tr key={index}>
-                  <th scope="row">{index}</th>
                   <td>{post.fecha}</td>
                   <td>{post.movimiento}</td>
                   <td>{post.tipo}</td>
@@ -79,7 +77,7 @@ const StepsList = () => {
                     </Link>
                     &nbsp;
                     <button
-                      className="btn btn-outline-danger"
+                      className="btn btn-outline-danger m-1"
                       onClick={() => onDelete(post._id)}
                     >
                       Eliminar

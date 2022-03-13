@@ -47,7 +47,7 @@ const PostsTable = (props) => {
                   <td>
                     <Link
                       to={`/edit/${post._id}`}
-                      className="btn btn-outline-warning"
+                      className="btn btn-outline-warning m-1"
                     >
                       Editar
                     </Link>
