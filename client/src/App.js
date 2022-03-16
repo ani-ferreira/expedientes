@@ -19,19 +19,19 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/*  public routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/unathorized" element={<Unathorized />} />
+        <Route path="login" element={<Login />} />
+        <Route path="unathorized" element={<Unathorized />} />
         {/*  private routes */}
         <Route element={<RequireAuth />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/posts" element={<AllPosts />} />
-          <Route path="/add" element={<CreatePost />} />
-          <Route path="/edit/:id" element={<EditPost />} />
-          <Route path="/folders" element={<Folders />} exact />
-          <Route path="/folders/:folderlist" element={<StepsList />} />
+          <Route index element={<Home />} />
+          <Route path="posts" element={<AllPosts />} />
+          <Route path="add" element={<CreatePost />} />
+          <Route path="edit/:id" element={<EditPost />} />
+          <Route path="folders" element={<Folders />} exact />
+          <Route path="folders/:folderlist" element={<StepsList />} />
           <Route element={<RequireAdmin />}>
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/register" element={<Register />} />
+            <Route path="admin" element={<Admin />} />
+            <Route path="register" element={<Register />} />
           </Route>
         </Route>
         {/* catch all */}
