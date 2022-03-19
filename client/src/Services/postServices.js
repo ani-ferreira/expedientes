@@ -5,26 +5,25 @@ const getHeaders = () => {
   return { Authorization: `Bearer ${token}` };
 };
 
-/* const customAxios = axios.create({
-  baseUrl: '/posts',
-  headers: getHeaders(),
-});
+const axiosApiInstance = axios.create();
 
-//axios interceptors to handle logout if JWT expired(error 403)
-customAxios.interceptors.response.use(
-  (response) => response,
+// Request interceptor for API calls
+axiosApiInstance.interceptors.request.use(
+  async (config) => {
+    config.headers = {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    };
+    return config;
+  },
   (error) => {
-    if (error.response.status === 403) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-    }
+    Promise.reject(error);
   }
 );
- */
+
 //get all
 export const setPosts = async () => {
   try {
-    const result = await axios.get('/posts', { headers: getHeaders() });
+    const result = await axiosApiInstance.get('/posts');
     return result.data;
   } catch (error) {
     if (error.response.status === 403) {
