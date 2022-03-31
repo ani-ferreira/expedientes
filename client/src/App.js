@@ -13,8 +13,12 @@ import Admin from './pages/Admin';
 import Register from './pages/Register';
 import RequireAdmin from './components/RequireAdmin';
 import Unathorized from './pages/Unathorized';
+import {useSelector} from 'react-redux'
+
 
 const App = () => {
+  const token = useSelector((state)=>state.authReducer.token)
+console.log(token)
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
