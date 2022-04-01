@@ -37,7 +37,7 @@ const Login = () => {
     <>
       <h3 className="banner text-center">Bienvenido/a, ingrese sus datos:</h3>
 
-      <div class="col-xs-12 col-sm-6 col-md-4 container">
+      <div className="col-xs-12 col-sm-6 col-md-4 container">
         <Card className="mt-5 mb-5  p-5 container">
           <form onSubmit={(e) => submitHandler(e)}>
             <div className="mb-3">

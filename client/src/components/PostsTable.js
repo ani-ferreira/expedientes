@@ -22,8 +22,8 @@ const PostsTable = (props) => {
   }
 
   return (
-    <div class="table-responsive-sm">
-      <table class="table">
+    <div className="table-responsive-sm">
+      <table className="table">
         <thead>
           <tr>
             {/*  <th scope="col">ID</th> */}
