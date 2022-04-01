@@ -17,7 +17,7 @@ import {useSelector} from 'react-redux'
 import axios from 'axios';
 
 const token = localStorage.getItem('token');
-axios.defaults.headers["Authorization"]= token
+axios.defaults.headers.common["Authorization"]= token
 
 const App = () => {
   const token = useSelector((state)=>state.authReducer.token)
