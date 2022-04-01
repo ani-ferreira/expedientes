@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-const getHeaders = () => {
-  const token = localStorage.getItem('token');
-  return { Authorization: `Bearer ${token}` };
-};
-
 const axiosApiInstance = axios.create();
 
 // Request interceptor for API calls
@@ -42,7 +37,7 @@ export const setPosts = async () => {
 //create
 export const newPost = async (data) => {
   try {
-    const req = await axios.post('/posts/add', data, { headers: getHeaders() });
+    const req = await axios.post('/posts/add', data);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -55,9 +50,7 @@ export const newPost = async (data) => {
 //edit
 export const updatePostById = async (id, data) => {
   try {
-    const req = await axios.put(`/posts/update/${id}`, data, {
-      headers: getHeaders(),
-    });
+    const req = await axios.put(`/posts/update/${id}`, data);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -70,9 +63,7 @@ export const updatePostById = async (id, data) => {
 //delete
 export const deletePostById = async (id) => {
   try {
-    const req = await axios.delete(`/posts/delete/${id}`, {
-      headers: getHeaders(),
-    });
+    const req = await axios.delete(`/posts/delete/${id}`);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -85,7 +76,7 @@ export const deletePostById = async (id) => {
 //
 export const getById = async (id) => {
   try {
-    const req = await axios.get(`/posts/info/${id}`, { headers: getHeaders() });
+    const req = await axios.get(`/posts/info/${id}`);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
