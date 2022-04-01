@@ -23,7 +23,13 @@ axiosApiInstance.interceptors.request.use(
 //get all
 export const setPosts = async () => {
   try {
-    const result = await axios.get('/posts');
+    const result = await axios.get('/posts', {
+      withCredentials: true,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },});
     return result.data;
   } catch (error) {
     if (error.response.status === 403) {
