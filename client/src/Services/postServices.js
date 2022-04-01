@@ -23,7 +23,7 @@ axiosApiInstance.interceptors.request.use(
 //get all
 export const setPosts = async () => {
   try {
-    const result = await axiosApiInstance.get('/posts');
+    const result = await axios.get('/posts');
     return result.data;
   } catch (error) {
     if (error.response.status === 403) {

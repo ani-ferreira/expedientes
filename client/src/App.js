@@ -15,11 +15,21 @@ import RequireAdmin from './components/RequireAdmin';
 import Unathorized from './pages/Unathorized';
 import {useSelector} from 'react-redux'
 import axios from 'axios';
+import { useEffect } from 'react';
 
-const token = localStorage.getItem('token');
-axios.defaults.headers.common["Authorization"]= token
+//const token = localStorage.getItem('token');
+//axios.defaults.headers.common["Authorization"]= token
 
 const App = () => {
+
+  useEffect(() => {
+    axios.defaults.headers[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem('token')}`;
+    
+    }, []);
+
+
   const token = useSelector((state)=>state.authReducer.token)
 console.log(token)
   return (
