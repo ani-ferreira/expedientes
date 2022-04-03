@@ -14,12 +14,17 @@ import Register from './pages/Register';
 import RequireAdmin from './components/RequireAdmin';
 import Unathorized from './pages/Unathorized';
 import {useSelector} from 'react-redux'
+import axios from 'axios';
 
 
 const App = () => {
 
-const token = useSelector((state)=>state.authReducer.token)
-console.log(token)
+const token = localStorage.getItem('token');
+axios.defaults.headers.common["authorization"]= 'Bearer ' + token;
+
+const tokenx = useSelector((state)=>state.authReducer.token)
+console.log(tokenx)
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
