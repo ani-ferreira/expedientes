@@ -1,30 +1,13 @@
 import axios from 'axios';
 
-const axiosApiInstance = axios.create();
-
-// Request interceptor for API calls
-axiosApiInstance.interceptors.request.use(
-  async (config) => {
-    config.headers = {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    };
-    return config;
-  },
-  (error) => {
-    Promise.reject(error);
-  }
-);
+const axiosInstance = axios.create({
+  headers: {'authorization': `Bearer ${localStorage.getItem('token')}`}
+});
 
 //get all
 export const setPosts = async () => {
   try {
-    const result = await axios.get('/posts', {
-      withCredentials: true,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true,
-      },});
+    const result = await axiosInstance.get('/posts');
     return result.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -37,7 +20,7 @@ export const setPosts = async () => {
 //create
 export const newPost = async (data) => {
   try {
-    const req = await axios.post('/posts/add', data);
+    const req = await axiosInstance.post('/posts/add', data);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -50,7 +33,7 @@ export const newPost = async (data) => {
 //edit
 export const updatePostById = async (id, data) => {
   try {
-    const req = await axios.put(`/posts/update/${id}`, data);
+    const req = await axiosInstance.put(`/posts/update/${id}`, data);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -63,7 +46,7 @@ export const updatePostById = async (id, data) => {
 //delete
 export const deletePostById = async (id) => {
   try {
-    const req = await axios.delete(`/posts/delete/${id}`);
+    const req = await axiosInstance.delete(`/posts/delete/${id}`);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -76,7 +59,7 @@ export const deletePostById = async (id) => {
 //
 export const getById = async (id) => {
   try {
-    const req = await axios.get(`/posts/info/${id}`);
+    const req = await axiosInstance.get(`/posts/info/${id}`);
     return req.data;
   } catch (error) {
     if (error.response.status === 403) {
