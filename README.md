@@ -68,7 +68,6 @@ This web app would allow them to have all the updates they need in one place, pl
 
 https://user-images.githubusercontent.com/73915239/156864194-337ecd3f-7e5b-4b1c-bfc5-d9d03db6eedc.mp4
 
-
 ## Setup
 
 Clone this repository to your desktop and `run npm install` to install all the dependencies.
@@ -81,3 +80,4 @@ To do:
 
 - Add a datepicker to the form that displays a calendar along with a date input field
 - Display some message for the user to know they are logged out (when JWT expires). At the moment they are just being redirected to login page.
+- Try cookies instead of localStorage
